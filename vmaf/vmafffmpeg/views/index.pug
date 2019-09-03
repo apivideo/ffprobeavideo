@@ -1,0 +1,11 @@
+p Hello Pug!!
+p analysis id:  #{id}
+p test video is: #{totalJson.test.format.filename}
+p= 'Video is: '+ Math.round(totalJson.test.format.duration)+ ' s long, and is '+ Math.round(totalJson.test.format.duration/1024/1024) +' MB.'
+p 
+
+p reference video is: #{totalJson.reference.format.filename}
+p= 'Video is: '+ Math.round(totalJson.reference.format.duration)+ ' s long, and is '+ Math.round(totalJson.reference.format.duration/1024/1024) +' MB.'
+p= 'the test video is '+Math.round(totalJson.test.format.sizetotal/Json.reference.format.size*100)+'% KB smaller'
+
+p <video autoplay muted src="#{totalJson.test.format.filename}"/>
