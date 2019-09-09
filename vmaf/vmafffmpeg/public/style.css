@@ -1,0 +1,29 @@
+.header {
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 100%;
+  color: #FFFFFF;
+  background-color: #525286
+  
+  }
+.formPadding{
+ padding: 2%;
+}
+  
+  
+.form {
+  width: 75%;
+  background: #fff;
+  padding: 20px;
+  border-style: solid;
+  border-color: green;
+  border-width: 3px;
+
+
+}
+
+.input{
+ width: 75%;
+
+}

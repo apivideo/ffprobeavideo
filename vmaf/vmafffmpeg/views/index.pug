@@ -1,11 +1,14 @@
-p Hello Pug!!
-p analysis id:  #{id}
-p test video is: #{totalJson.test.format.filename}
-p= 'Video is: '+ Math.round(totalJson.test.format.duration)+ ' s long, and is '+ Math.round(totalJson.test.format.duration/1024/1024) +' MB.'
-p 
+head 
+  link(rel='stylesheet', href='style.css')
+body
+  header.header
+    h1 Your Quality test is underway!
+  p <video autoplay muted controls width=800 src="#{totalJson.test.format.filename}"/>
+  p analysis id:  #{id}
+  p= 'Reformatted video is: ' + Math.round(totalJson.test.streams[0].width) + 'x' +Math.round(totalJson.test.streams[0].height)+', '+ Math.round(totalJson.test.format.duration)+ 's long, and is '+ Math.round(totalJson.test.format.size/1024) +' kB.'
+  p 
+  p= 'Reference video is: ' + Math.round(totalJson.reference.streams[0].width) + 'x' +Math.round(totalJson.reference.streams[0].height)+', '+ Math.round(totalJson.reference.format.duration)+ 's long, and is '+ Math.round(totalJson.reference.format.size/1024) +' kB.'
+  p= 'the test video is '+Math.round(totalJson.test.format.size/totalJson.reference.format.size*100)+'% of the reference video'
 
-p reference video is: #{totalJson.reference.format.filename}
-p= 'Video is: '+ Math.round(totalJson.reference.format.duration)+ ' s long, and is '+ Math.round(totalJson.reference.format.duration/1024/1024) +' MB.'
-p= 'the test video is '+Math.round(totalJson.test.format.sizetotal/Json.reference.format.size*100)+'% KB smaller'
 
-p <video autoplay muted src="#{totalJson.test.format.filename}"/>
+  p when the video is finished playing <a href="/testResults?id=#{id}">collect your VMAF score</a>.
