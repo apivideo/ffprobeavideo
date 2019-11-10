@@ -1,5 +1,6 @@
 # Stream Clarity
-Measure video quality (SSIM, PSNR and VMAF) remotely
+Measure video quality (SSIM, PSNR and VMAF) remotely.
+Running in production at <a href="https://www.streamclarity.com">StreamClarity.com</a>.
 
 ## Is your video clear?
 
