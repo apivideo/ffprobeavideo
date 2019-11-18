@@ -4,18 +4,25 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 import uuidv4 from 'uuid/v4';
+
 const pug = require('pug');
 //bull for queuing the vmaf ffmpeg jons
 var Queue = require('bull');
+var favicon = require('serve-favicon');
 const app = express();
+app.use(favicon('public/icon.ico')); 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine','pug');
 app.use(express.static('public/'));
 
+
 //read files
 var fs = require('fs');
+//var http = require('http');
+//var https = require('https');
+
 var path = "../tests/"
 var parsedTotalJson="";
 let test= {};
@@ -65,6 +72,36 @@ app.get('/',  (req, res) => {
      return res.render('landing');
 });
 
+app.get('/probe', (req,res) =>{
+	let url = req.query.url;
+	console.log("testurl="+url);
+	var probeJson = new Promise(function(resolve, reject) {
+  	      
+  	    try{  
+  	      ffprobe(url, function(result) { 
+    			//create combined JSON file
+    			var resultJson = result;
+    			
+    			resolve(resultJson);
+           });
+          } 
+          catch(Exception){
+          	reject("error in ffprobe promise");
+          }
+    });
+    probeJson.then(function(value) {
+//     console.log("total json promise:"+ totalJson);
+     //compare the 2 videos
+     //no longer have to be the same size!!!
+       var parsedprobeJson = JSON.parse(value);
+       console.log("parsed json" + value);
+       //const response = {parsedprobeJson};
+       return res.status(200).send(parsedprobeJson);
+   });
+       
+});
+ 
+
 app.get('/test', (req, res) => {
     //get urls
     //i exect 2 params reference url ref, test url test
@@ -103,7 +140,7 @@ app.get('/test', (req, res) => {
           	reject("error in ffprobe promise");
           }   
 });
-//todo promise rejections need to be added
+
 
 
 jsonCombinedPromise.then(function(value) {
@@ -112,13 +149,22 @@ jsonCombinedPromise.then(function(value) {
    //compare the 2 videos
    //no longer have to be the same size!!!
    parsedTotalJson = JSON.parse(totalJson);
+   console.log(parsedTotalJson);
    var streamCount = parsedTotalJson['reference']['streams'].length;
    var refWidth=0;
    var refHeight = 0;
+   var testWidth=0;
+   var testHeight = 0;
    for(var i=0;i<streamCount;i++){
    		if (parsedTotalJson['reference']['streams'][i]['codec_type'] =="video"){
    		   refWidth = parsedTotalJson['reference']['streams'][i]['width'];
    			refHeight =parsedTotalJson['reference']['streams'][i]['height'];
+   			console.log("ref: "+refHeight + " x" +refWidth);
+   		}
+   		if (parsedTotalJson['test']['streams'][i]['codec_type'] =="video"){
+   		   testWidth = parsedTotalJson['test']['streams'][i]['width'];
+   			testHeight =parsedTotalJson['test']['streams'][i]['height'];
+   			console.log("test: "+testHeight + " x" +testWidth);
    		}
    
    } 
@@ -140,14 +186,14 @@ jsonCombinedPromise.then(function(value) {
     if (api===true){
 
     	const response = {
-      		id, statusCode, totalJson
+      		id, statusCode, refHeight, refWidth,testWidth, testHeight, totalJson
     	};
     	//send a 100 meaning that the test is in process
    		return res.status(200).send(response);
    	} else{
    		 //build a page 		 
    		 return res.render('index', {
-  			id, statusCode, totalJson
+  			id, statusCode, refHeight, refWidth,testWidth, testHeight, totalJson
 		 });
    		 
    		 }
@@ -217,11 +263,12 @@ function ffprobe(videoUrl, callback){
 	let probe = spawn('ffprobe', ['-i', videoUrl, '-show_format','-show_streams', `-v`, 'quiet', '-print_format', 'json']);
     // console.log("ffprobe" + videoUrl);
      probe.stdout.on('data', (data) => {
-      //  console.log("debugging DL" +data.length);     	
+       // console.log("debugging DL" +data.length);     	
         dataString += data.toString();
-
+		console.log(dataString);
  	});
  	probe.on('close', function(code) {
+ 		//console.log("close: "+ dataString);
         return callback(dataString);
     });
 

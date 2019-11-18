@@ -1,10 +1,12 @@
 head 
   link(rel='stylesheet', href='../style.css')
+  link(rel='icon', href='icon.ico', type='image/x-icon')
 body
   header.header
     h1 Video Stream Clarity Test
     img(width='100%',src='https://res.cloudinary.com/dougsillars/image/upload/w_1500,h_500,c_crop/c_crop,w_1500,h_250,g_auto/v1568060092/70416531_695504344262420_6128988077365919744_n_acjhk8.jpg')
-  p No one likes a cloudy stream - in nature, or in their video!  Test your web video against the original file before you go live!
+  p No one likes a blurry, opaque stream - in nature, or in their video.  
+  p Reducing video file size important, but not at the cost of video quality. Test your transcoded video against the original file to measure the change in quality.
   p  
   p To test the video quality of your video, you need the original video (the reference), and the transcoded video.
   p Enter the urls of both videos below, and we'll calculate 3 common video quality metrics for you.
@@ -19,15 +21,16 @@ body
         input(type='submit', value='Test Video Quality')
         
   h2 What Video Quality Metrics are measured?
-  p 
-    Structural Simularity (SSIM):  
+  p Structural Simularity (SSIM):  
     a(href='https://en.wikipedia.org/wiki/Structural_similarity') Wikipedia
-  p 
-    Perceived Signal to Noise Ratio (PSNR): 
+  p Perceived Signal to Noise Ratio (PSNR): 
     a(href='https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio') Wikipedia
   p Video Multimethod Assessment Fusion (VMAF): 
     a(href='https://en.wikipedia.org/wiki/Video_Multimethod_Assessment_Fusion') Wikipedia
   p In general, higher numbers are better.
-  
-  p Built by a(href='https://dougsillars.com')Doug Sillars
-  p Code on a(href='https://github.com/dougsillars/StreamClarity')Github
+  p
+  p Built by 
+    a(href='https://dougsillars.com') Doug Sillars
+  p Code on 
+    a(href='https://github.com/dougsillars/StreamClarity') Github
+  p Hosted on a small EC2 instance, so calculations are queued and slow.
