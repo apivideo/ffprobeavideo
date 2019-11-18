@@ -253,8 +253,8 @@ app.get('/testResults', (req, res) => {
 });
 
 
-app.listen(process.env.PORT, () =>
-  console.log(`Ready to process video files on port ${process.env.PORT}!`),
+app.listen(1437, () =>
+  console.log(`Ready to process video files on port 1437!`),
 );
 
 
