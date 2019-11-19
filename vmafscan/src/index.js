@@ -1,7 +1,7 @@
 //https://www.robinwieruch.de/minimal-node-js-babel-setup
 //great node tutorial
 
-import 'dotenv/config';
+//import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 import uuidv4 from 'uuid/v4';
