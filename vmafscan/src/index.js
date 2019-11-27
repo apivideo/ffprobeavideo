@@ -246,7 +246,7 @@ app.get('/testResults', (req, res) => {
     return res.status(200).send(response);
   }else{
      //build a page 		 
-     return res.render('results', {
+     return res.render('0', {
   			id, statusCode,VMAF,PSNR,SSIM
 	 });
    		 
