@@ -230,7 +230,7 @@ app.get('/testResults', (req, res) => {
 
   var json = JSON.parse(result);
   var videojson = JSON.stringify(parsedTotalJson);
- // console.log(videojson);
+  console.log(videojson);
   var statusCode = 200;
   var VMAF = json['VMAF score'];
   var PSNR = json['PSNR score'];
@@ -246,7 +246,7 @@ app.get('/testResults', (req, res) => {
     return res.status(200).send(response);
   }else{
      //build a page 		 
-     return res.render('0', {
+     return res.render('results', {
   			id, statusCode,VMAF,PSNR,SSIM
 	 });
    		 
