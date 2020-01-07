@@ -44,9 +44,10 @@ videoQualityQueue.process(concurrency, function(job, done) {
     var jobString = JSON.stringify(job);
     var file = "test_" +job.data.fileID+ ".json";
     console.log(path+file);
+	console.log("mobile?" +job.data.mobile);
     var ffmpegPromise = new Promise(function(resolve, reject) {
 		var params = ':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:phone_model=true:log_fmt=json:log_path=';
-		if(job.data.mobile = false){
+		if(job.data.mobile == false){
 			params = ':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:log_fmt=json:log_path='
 		}
 		
@@ -124,11 +125,10 @@ app.get('/test', (req, res) => {
     }else if (req.query.api == "true" ){
      	api = true;
     }
-    if (req.query.mobilemodel == "false" ){
-       mobile = false;
-    }else if (req.query.mobilemodel == "true" ){
+ 
+    if (req.query.mobilemodel == "on" ){
      	mobile = true;
-    }
+    }else{ mobile=false;}
 	
     let testPriority = 5;
     if (req.query.pri !== {}){
