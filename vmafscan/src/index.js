@@ -233,7 +233,8 @@ app.get('/testResults', (req, res) => {
     }else if (req.query.api == "true" ){
      	api = true;
     }
-  let model = req.query.model;
+  let mobile = req.query.mobile;
+  console.log("mobile model:" + mobile);
 	
   //get the data that is stored on the server
   //quality data
@@ -254,19 +255,19 @@ app.get('/testResults', (req, res) => {
   var VMAF = json['VMAF score'];
   var PSNR = json['PSNR score'];
   var SSIM = json['SSIM score'];
-  var returnJson = "{\"VMAF\":"+json['VMAF score']+", \"PSNR\":"+json['PSNR score']+", \"SSIM\":"+json['SSIM score']+"}";
+  var returnJson = "{\"VMAF\":"+json['VMAF score']+", \"PSNR\":"+json['PSNR score']+", \"SSIM\":"+json['SSIM score']", \"mobile\":"+mobile+"}";
   returnJson = JSON.parse(returnJson);
   //console.log(returnJson);
   var statusCode = 200;
   if(api){
     const response = {
-      id, model,statusCode,VMAF,PSNR,SSIM
+      id, mobile,statusCode,VMAF,PSNR,SSIM
      };
     return res.status(200).send(response);
   }else{
      //build a page 		 
      return res.render('results', {
-  			id, model,statusCode,VMAF,PSNR,SSIM
+  			id, mobile,statusCode,VMAF,PSNR,SSIM
 	 });
    		 
   }
