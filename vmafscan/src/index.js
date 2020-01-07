@@ -255,7 +255,7 @@ app.get('/testResults', (req, res) => {
   var VMAF = json['VMAF score'];
   var PSNR = json['PSNR score'];
   var SSIM = json['SSIM score'];
-  var returnJson = "{\"VMAF\":"+json['VMAF score']+", \"PSNR\":"+json['PSNR score']+", \"SSIM\":"+json['SSIM score']", \"mobile\":"+mobile+"}";
+  var returnJson = "{\"VMAF\":"+json['VMAF score']+", \"PSNR\":"+json['PSNR score']+", \"SSIM\":"+json['SSIM score']+", \"mobile\":"+mobile+"}";
   returnJson = JSON.parse(returnJson);
   //console.log(returnJson);
   var statusCode = 200;
