@@ -204,14 +204,14 @@ jsonCombinedPromise.then(function(value) {
     if (api===true){
 
     	const response = {
-      		id, statusCode, refHeight, refWidth,testWidth, testHeight, totalJson
+      		id, statusCode, refHeight, refWidth,testWidth, testHeight, totalJson, mobile
     	};
     	//send a 100 meaning that the test is in process
    		return res.status(200).send(response);
    	} else{
    		 //build a page 		 
    		 return res.render('index', {
-  			id, statusCode, refHeight, refWidth,testWidth, testHeight, totalJson
+  			id, statusCode, refHeight, refWidth,testWidth, testHeight, totalJson, mobile
 		 });
    		 
    		 }

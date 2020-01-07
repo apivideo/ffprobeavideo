@@ -3,13 +3,14 @@ head
   link(rel='icon', href='icon.ico', type='image/x-icon')
 body
   header.header
-    h1 Your Quality test is underway!
+    h1 Your Quality test is underway!	
   p <video autoplay muted controls width=800 src="#{totalJson.test.format.filename}"/>
   p analysis id:  #{id}
+  p using the mobile profile: #{mobile}
   p= 'Reformatted video is: ' + Math.round(testWidth) + 'x' +Math.round(testHeight)+', '+ Math.round(totalJson.test.format.duration)+ 's long, and is '+ Math.round(totalJson.test.format.size/1024) +' kB, for a bitrate of: '+ Math.round(totalJson.test.format.bit_rate/1024) + ' KBPS.'
   p 
   p= 'Reference video is: ' + Math.round(refWidth) + 'x' +Math.round(refHeight)+', '+ Math.round(totalJson.reference.format.duration)+ 's long, and is '+ Math.round(totalJson.reference.format.size/1024) +' kB, for a bitrate of: '+ Math.round(totalJson.reference.format.bit_rate/1024) + ' KBPS.'
   p= 'the test video is '+Math.round(totalJson.test.format.size/totalJson.reference.format.size*100)+'% of the reference video'
 
 
-  p when the video is finished playing <a href="/testResults?id=#{id}">collect your VMAF score</a>.
+  p when the video is finished playing <a href="/testResults?id=#{id}&mobile=#{mobile}">collect your VMAF score</a>.
