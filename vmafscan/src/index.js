@@ -199,7 +199,7 @@ jsonCombinedPromise.then(function(value) {
      refVideoWidth: refWidth
    },{priority: testPriority});
    
-
+   console.log("fileid:" +id +"mobile"+mobile);
     totalJson = JSON.parse(totalJson);
     var statusCode = 100;
     if (api===true){
