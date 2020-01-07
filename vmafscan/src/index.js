@@ -47,9 +47,10 @@ videoQualityQueue.process(concurrency, function(job, done) {
 	console.log("mobile?" +job.data.mobile);
     var ffmpegPromise = new Promise(function(resolve, reject) {
 		var params = ':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:phone_model=true:log_fmt=json:log_path=';
-		if(job.data.mobile == false){
+		if(!job.data.mobile){
 			params = ':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:log_fmt=json:log_path='
 		}
+		console.log("mobile: " +job.data.mobile);
 		console.log("params: " +params);
          try {
     		let ffmpeg = spawn('ffmpeg', ['-i', job.data.testUrl, '-i', job.data.refUrl, '-filter_complex', '[0:v]scale='+job.data.refVideoWidth+'x'+job.data.refVideoHeight+params+path+file, `-f`, 'null', '-']);
