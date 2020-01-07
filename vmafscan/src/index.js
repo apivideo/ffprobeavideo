@@ -50,7 +50,7 @@ videoQualityQueue.process(concurrency, function(job, done) {
 		if(job.data.mobile == false){
 			params = ':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:log_fmt=json:log_path='
 		}
-		
+		console.log("params: " +params);
          try {
     		let ffmpeg = spawn('ffmpeg', ['-i', job.data.testUrl, '-i', job.data.refUrl, '-filter_complex', '[0:v]scale='+job.data.refVideoWidth+'x'+job.data.refVideoHeight+params+path+file, `-f`, 'null', '-']);
     		console.log("running test id:" +job.data.fileID); 
