@@ -233,6 +233,8 @@ app.get('/testResults', (req, res) => {
     }else if (req.query.api == "true" ){
      	api = true;
     }
+  let model = req.query.model;
+	
   //get the data that is stored on the server
   //quality data
   let filename = "test_" +id+ ".json";
@@ -258,13 +260,13 @@ app.get('/testResults', (req, res) => {
   var statusCode = 200;
   if(api){
     const response = {
-      id, statusCode,VMAF,PSNR,SSIM
+      id, model,statusCode,VMAF,PSNR,SSIM
      };
     return res.status(200).send(response);
   }else{
      //build a page 		 
      return res.render('results', {
-  			id, statusCode,VMAF,PSNR,SSIM
+  			id, model,statusCode,VMAF,PSNR,SSIM
 	 });
    		 
   }
