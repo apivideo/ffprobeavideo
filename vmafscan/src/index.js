@@ -45,8 +45,13 @@ videoQualityQueue.process(concurrency, function(job, done) {
     var file = "test_" +job.data.fileID+ ".json";
     console.log(path+file);
     var ffmpegPromise = new Promise(function(resolve, reject) {
+		var params = ':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:phone_model=true:log_fmt=json:log_path=';
+		if(job.data.mobile = false){
+			params = ':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:log_fmt=json:log_path='
+		}
+		
          try {
-    		let ffmpeg = spawn('ffmpeg', ['-i', job.data.testUrl, '-i', job.data.refUrl, '-filter_complex', '[0:v]scale='+job.data.refVideoWidth+'x'+job.data.refVideoHeight+':flags=bicubic[main];[main][1:v]libvmaf=ssim=true:psnr=true:phone_model=true:log_fmt=json:log_path='+path+file, `-f`, 'null', '-']);
+    		let ffmpeg = spawn('ffmpeg', ['-i', job.data.testUrl, '-i', job.data.refUrl, '-filter_complex', '[0:v]scale='+job.data.refVideoWidth+'x'+job.data.refVideoHeight+params+path+file, `-f`, 'null', '-']);
     		console.log("running test id:" +job.data.fileID); 
     		ffmpeg.stderr.on('data', (err) => {
             	console.log('err:', new String(err));
@@ -107,15 +112,24 @@ app.get('/probe', (req,res) =>{
 app.get('/test', (req, res) => {
     //get urls
     //i exect 2 params reference url ref, test url test
+	//i expect 3 parameters reference url ref, test url test, and mobile model
     let ref = req.query.refurl;
     let test = req.query.testurl;
     let api =false;
+	let mobile = true;
     
+	
     if (req.query.api == "false" ){
        api = false;
     }else if (req.query.api == "true" ){
      	api = true;
     }
+    if (req.query.mobilemodel == "false" ){
+       mobile = false;
+    }else if (req.query.mobilemodel == "true" ){
+     	mobile = true;
+    }
+	
     let testPriority = 5;
     if (req.query.pri !== {}){
       testPriority = req.query.pri;
@@ -178,6 +192,7 @@ jsonCombinedPromise.then(function(value) {
      fileID: id,
      testUrl: test, 
      refUrl: ref,
+	 mobile: mobile,
      refVideoHeight: refHeight,
      refVideoWidth: refWidth
    },{priority: testPriority});
