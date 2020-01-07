@@ -148,7 +148,7 @@ app.get('/test', (req, res) => {
   	      ffprobe(ref, function(refresult) { 
     		ffprobe(test, function(testresult) {
     			//create combined JSON file
-    			var combinedJson = "{\"test\":"+ testresult+",\"reference\":"+refresult+"}"
+    			var combinedJson = "{\"test\":"+ testresult+",\"reference\":"+refresult+",\"mobile\":"+mobile+"}"
     			resolve(combinedJson);
     		});
            });
@@ -168,6 +168,7 @@ jsonCombinedPromise.then(function(value) {
    parsedTotalJson = JSON.parse(totalJson);
    console.log(parsedTotalJson);
    var streamCount = parsedTotalJson['reference']['streams'].length;
+   var mobile = parsedTotalJson['mobile'];
    var refWidth=0;
    var refHeight = 0;
    var testWidth=0;
