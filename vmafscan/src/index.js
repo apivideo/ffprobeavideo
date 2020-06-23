@@ -23,6 +23,24 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine','pug');
 app.use(express.static('public/'));
 
+//moesif
+var moesif = require('moesif-express');
+// 2. Set the options, the only required field is applicationId
+var moesifMiddleware = moesif({
+  applicationId: 'eyJhcHAiOiI1MTk6MTQ3IiwidmVyIjoiMi4wIiwib3JnIjoiMjQwOjIxMCIsImlhdCI6MTU5Mjg3MDQwMH0.rcYbuEeoN8kSUiopSYFy6ZAhThA0ZGaJLsavzWqaOoQ',
+  
+  // Set to false if you don't want to capture req/resp body
+  logBody: true,
+
+  // Optional hook to link API calls to users
+  identifyUser: function (req, res) {
+    return req.user ? req.user.id : undefined;
+  },
+});
+
+// 3. Enable the Moesif middleware to start capturing incoming API Calls
+app.use(moesifMiddleware);
+
 
 //read files
 var fs = require('fs');
