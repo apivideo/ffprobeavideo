@@ -28,7 +28,6 @@ var moesif = require('moesif-express');
 // 2. Set the options, the only required field is applicationId
 var moesifMiddleware = moesif({
   applicationId: 'eyJhcHAiOiI1MTk6MTQ3IiwidmVyIjoiMi4wIiwib3JnIjoiMjQwOjIxMCIsImlhdCI6MTU5Mjg3MDQwMH0.rcYbuEeoN8kSUiopSYFy6ZAhThA0ZGaJLsavzWqaOoQ',
-  
   // Set to false if you don't want to capture req/resp body
   logBody: true,
 
