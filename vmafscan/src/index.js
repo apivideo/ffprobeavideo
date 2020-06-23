@@ -2,10 +2,14 @@
 //great node tutorial
 
 
-import 'dotenv/config';
-import cors from 'cors';
-import express from 'express';
-import uuidv4 from 'uuid/v4';
+require('dotenv/config');
+const cors = require('cors');
+const express =require('express');
+const uuidv4 =require('uuid/v4');
+
+//import cors from 'cors';
+//import express from 'express';
+//import uuidv4 from 'uuid/v4';
 
 const pug = require('pug');
 //bull for queuing the vmaf ffmpeg jons
