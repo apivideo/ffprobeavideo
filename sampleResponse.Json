@@ -1,0 +1,43 @@
+{
+    "id": "0930a9b4-5920-41dc-9a85-f355a49ff5b0",
+    "totalJson": {
+        "reference": {
+            "format": {
+                "bit_rate": "8087454",
+                "duration": "5.093000",
+                "filename": "https://res.cloudinary.com/dougsillars/video/upload/eo_5,q_99/v1562844864/rbsp_launch_720p_gz9zfm.mp4",
+                "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+                "nb_programs": 0,
+                "nb_streams": 2,
+                "probe_score": 100,
+                "size": "5148676",
+                "start_time": "0.000000",
+                "tags": {
+                    "compatible_brands": "isomiso2avc1mp41",
+                    "encoder": "Lavf58.20.100",
+                    "major_brand": "isom",
+                    "minor_version": "512"
+                }
+            }
+        },
+        "test": {
+            "format": {
+                "bit_rate": "687803",
+                "duration": "5.093000",
+                "filename": "https://res.cloudinary.com/dougsillars/video/upload/eo_5,w_100/w_1280,h_720/v1562844864/rbsp_launch_720p_gz9zfm.mp4",
+                "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+                "nb_programs": 0,
+                "nb_streams": 2,
+                "probe_score": 100,
+                "size": "437873",
+                "start_time": "0.000000",
+                "tags": {
+                    "compatible_brands": "isomiso2avc1mp41",
+                    "encoder": "Lavf58.20.100",
+                    "major_brand": "isom",
+                    "minor_version": "512"
+                }
+            }
+        }
+    }
+}

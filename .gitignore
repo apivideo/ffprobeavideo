@@ -1,3 +1,2 @@
-*.env
-*.babelrc
-vmaf/vmafffmpeg/tests/*
+.env
+/node_modules

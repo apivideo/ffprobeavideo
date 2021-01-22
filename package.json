@@ -1,0 +1,39 @@
+{
+  "name": "vmafffmpeg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "bull": "^3.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "kill-port": "^1.6.0",
+    "moesif-express": "^2.9.17",
+    "pug": "^2.0.4",
+    "querystring": "^0.2.0",
+    "serve-favicon": "^2.5.0",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "build": "babel src/index.js --out-file src/index-compiled.js",
+    "startprod": "babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "events": {
+      "crash": "kill-port 1437"
+    },
+    "delay": "1500"
+  },
+  "keywords": [],
+  "author": "Doug Sillars",
+  "license": "ISC",
+  "description": ""
+}
