@@ -14,11 +14,27 @@
   
 .form {
   width: 75%;
+  font-size: x-large;
   background: #fff;
   padding: 20px;
   border-style: solid;
   border-color: green;
   border-width: 3px;
+
+
+}
+
+#results {
+  font-size: x-large;
+  color: black;
+
+
+}
+
+#footer {
+  background-color: darkgray;
+  font-size: x-large;
+  color: black;
 
 
 }
