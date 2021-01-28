@@ -4,13 +4,21 @@ body
   header.header
     h1 your video info:
 
-  #results  
-    each val, key in info
-   
-      each nestedval, nestedkey in val 
-     
-          each secondnestval, secondnestkey in nestedval
-            p #{secondnestkey} : #{secondnestval}
+  #results 
+    #format 
+      h2 The ffprobe show_format response is an overview of your video.
+      each val, key in format
+        p #{key} : #{val}
+      p
+      p
+    #streams
+      h2 Show_streams has a lot of detailed information about each track inside the video.
+      h3 There are #{streams.length} streams in this video.
+      each val, key in streams
+        p #{key} : #{val}
+        each nestedval, nestedkey in val
+          p #{nestedkey} : #{nestedval}
+         
   p
   #footer 
     

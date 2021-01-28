@@ -26,11 +26,21 @@
 
 #results {
   font-size: x-large;
-  color: black;
+ 
 
 
 }
+#format{
+  padding: 10px;
 
+  color: darkslategray;
+}
+#streams{
+  padding: 20 px;
+
+  color: black;
+
+}
 #footer {
   background-color: darkgray;
   font-size: x-large;

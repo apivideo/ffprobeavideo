@@ -23,8 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine','pug');
 app.use(express.static('public/'));
 
-var ffprobe = require('ffprobe'),
-    ffprobeStatic = require('ffprobe-static');
+var ffprobe = require('ffprobe-client');
 
 
 app.get('/',  (req, res) => {
@@ -34,11 +33,19 @@ app.get('/',  (req, res) => {
 app.get('/probe', (req,res) =>{
 	let url = req.query.url;
 	console.log(" url="+url);
-  ffprobe(url, { path: ffprobeStatic.path }, function (err, info) {
-    if (err) return err;
-    console.log(info);
-    var string = JSON.stringify(info);
-    return res.render('results', {info});
+  let ffprobeResult = ffprobe(url) 
+  
+  ffprobeResult.then(function(info){
+    
+    //console.log(info);
+    var format = info.format;
+    var streams = info.streams;
+    console.log(format);
+    console.log(streams);
+
+    return res.render('results', {format, streams});
+  }).catch((err) => {
+    console.log(err);
   });
 });
  
