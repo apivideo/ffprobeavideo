@@ -5,6 +5,39 @@ body
     h1 your video info:
 
   #results 
+    h2 Here are commonly referenced values:
+    #topData 
+      p height
+      #height.data
+        p #{height}
+      p width
+      #width.data
+        p #{width}
+      p aspectRatio
+      #aspectRatio.data
+        p #{aspectRatio}
+      p bitrate
+      #bitrate.data
+        p #{bitrate}
+      p size (bytes)
+      #sizeBytes.data
+        p #{sizeBytes}
+      p duration (s)
+      #duration.data
+        p #{duration}
+      p formatName
+      #formatName.data
+        p #{formatName}  
+      p Long format name
+      #formatLong.data
+        p #{formatLong}
+      p videoCodec
+      #videoCodec.data
+
+        p #{videoCodec}
+      p audioCodec
+      #audioCodec.data
+        p #{audioCodec}
     #format 
       h2 The ffprobe show_format response is an overview of your video.
       each val, key in format

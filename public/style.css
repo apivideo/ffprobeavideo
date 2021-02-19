@@ -30,6 +30,15 @@
 
 
 }
+#topData{
+  padding: 10px;
+  color: orange;
+
+}
+.data{
+  color: black;
+  font-size: x-large;
+}
 #format{
   padding: 10px;
 

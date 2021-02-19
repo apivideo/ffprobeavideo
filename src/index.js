@@ -37,13 +37,42 @@ app.get('/probe', (req,res) =>{
   
   ffprobeResult.then(function(info){
     
-    //console.log(info);
+    //extract some essentials
+    //sometimes video is thr first stream.. someties second
+    var streamCount = info.format.nb_streams;
+   
+
+    //format data is overall
+    var bitrate= info.format.bit_rate;
+    var sizeBytes = info.format.size;
+    var duration = info.format.duration;
+    var formatName = info.format.format_name;
+    var formatLong = info.format.format_long_name;
+
+    //get video/audio specific infos
+    for (var i=0;i<streamCount;i++){
+      if (info.streams[i].codec_type == "video"){
+
+        var height = info.streams[i].height;
+        var width =info.streams[i].width;
+        var aspectRatio = info.streams[i].display_aspect_ratio;
+        var videoCodec = info.streams[i].codec_name;
+      }else{
+        //audio
+        var audioCodec = info.streams[i].codec_name;
+      }
+
+    }
+
+
+    console.log(bitrate, sizeBytes, duration, formatLong);
+    console.log(height, width, aspectRatio, videoCodec, audioCodec);
     var format = info.format;
     var streams = info.streams;
     console.log(format);
     console.log(streams);
 
-    return res.render('results', {format, streams});
+    return res.render('results', {format, streams, bitrate, sizeBytes, duration, formatLong, height, width, aspectRatio, videoCodec,audioCodec});
   }).catch((err) => {
     console.log(err);
   });
