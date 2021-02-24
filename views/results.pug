@@ -9,35 +9,35 @@ body
     #topData 
       p height
       #height.data
-        p #{height}
+        | #{height}
       p width
       #width.data
-        p #{width}
+        | #{width}
       p aspectRatio
       #aspectRatio.data
-        p #{aspectRatio}
+        | #{aspectRatio}
       p bitrate
       #bitrate.data
-        p #{bitrate}
+        | #{bitrate}
       p size (bytes)
       #sizeBytes.data
-        p #{sizeBytes}
+        | #{sizeBytes}
       p duration (s)
       #duration.data
-        p #{duration}
+        | #{duration}
       p formatName
       #formatName.data
-        p #{formatName}  
+        | #{formatName}  
       p Long format name
       #formatLong.data
-        p #{formatLong}
+        | #{formatLong}
       p videoCodec
       #videoCodec.data
 
-        p #{videoCodec}
+        | #{videoCodec}
       p audioCodec
       #audioCodec.data
-        p #{audioCodec}
+        | #{audioCodec}
     #format 
       h2 The ffprobe show_format response is an overview of your video.
       each val, key in format
