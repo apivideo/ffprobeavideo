@@ -32,6 +32,7 @@ app.get('/',  (req, res) => {
 
 app.get('/probe', (req,res) =>{
 	let url = req.query.url;
+  let json = req.query.json;
 	console.log(" url="+url);
   let ffprobeResult = ffprobe(url) 
   
@@ -72,8 +73,24 @@ app.get('/probe', (req,res) =>{
     console.log(format);
     console.log(streams);
 
-    return res.render('results', {format, streams, bitrate, sizeBytes, duration, formatLong, height, width, aspectRatio, videoCodec,audioCodec});
-  }).catch((err) => {
+   
+
+    if(json ==1){
+      res.json({"width": width,
+               "height": height,
+               "aspectRatio": aspectRatio,
+               "videoCodec": videoCodec,
+               "sizeBytes": sizeBytes,
+               "duration": duration,
+               "formatLong": formatLong,
+               "audioCodec": audioCodec,
+               "bitrate": bitrate
+               
+               });
+    }else{
+      return res.render('results', {format, streams, bitrate, sizeBytes, duration, formatLong, height, width, aspectRatio, videoCodec,audioCodec});
+    }
+    }).catch((err) => {
     console.log(err);
   });
 });
