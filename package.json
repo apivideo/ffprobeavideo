@@ -22,7 +22,7 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon src/index.js",
     "build": "babel src/index.js --out-file src/index-compiled.js",
     "startprod": "babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
