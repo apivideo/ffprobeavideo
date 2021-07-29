@@ -42,25 +42,56 @@ app.get('/probe', (req,res) =>{
     //sometimes video is thr first stream.. someties second
     var streamCount = info.format.nb_streams;
    
+    //initialise variables here, and guive them an empty value
+    var bitrate = "not provided";
+    var sizeBytes = "not provided";
+    var duration = "not provided";
+    var formatName = "not provided";
+    var formatLong = "not provided";
+    var height = "not provided";
+    var width = "not provided";
+    var aspectRatio = "not provided";
+    var videoCodec = "not provided";
+    var audioCodec = "not provided";
+
 
     //format data is overall
-    var bitrate= info.format.bit_rate;
-    var sizeBytes = info.format.size;
-    var duration = info.format.duration;
-    var formatName = info.format.format_name;
-    var formatLong = info.format.format_long_name;
-
+     
+    if(info.format.bit_rate){
+      bitrate= info.format.bit_rate;
+    }
+    if(info.format.size){
+     sizeBytes = info.format.size;
+    }
+    if(info.format.duration){
+     duration = info.format.duration;
+    }
+    if(info.format.format_name){
+       formatName = info.format.format_name;
+    }
+    if(info.format.format_long_name){
+       formatLong = info.format.format_long_name;
+    }
     //get video/audio specific infos
     for (var i=0;i<streamCount;i++){
       if (info.streams[i].codec_type == "video"){
-
-        var height = info.streams[i].height;
-        var width =info.streams[i].width;
-        var aspectRatio = info.streams[i].display_aspect_ratio;
-        var videoCodec = info.streams[i].codec_name;
+        if(info.streams[i].height){
+          height = info.streams[i].height;
+        }
+        if(info.streams[i].width){
+          width =info.streams[i].width;
+        }
+         if (info.streams[i].display_aspect_ratio){
+          aspectRatio = info.streams[i].display_aspect_ratio;
+         }
+          if (info.streams[i].codec_name){
+            videoCodec = info.streams[i].codec_name;
+          }
       }else{
         //audio
-        var audioCodec = info.streams[i].codec_name;
+        if (info.streams[i].codec_name){
+         audioCodec = info.streams[i].codec_name;
+        }
       }
 
     }
@@ -95,7 +126,7 @@ app.get('/probe', (req,res) =>{
   });
 });
  
-app.listen(3010, () =>
+app.listen(process.env.PORT ||  3010, () =>
   console.log(`Ready to process video files on port 3010!`),
 );
 
