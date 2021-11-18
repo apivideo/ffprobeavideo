@@ -13,7 +13,7 @@
 
 # FFPROBE
 
-FFprobe is an opens ource tool that is a part of FFMPEG.  It provides you with basic details about the video - how it was encoded, the bitrate, etc.
+FFprobe is an open source tool that is a part of FFMPEG.  It provides you with basic details about the video - how it was encoded, the bitrate, etc.
 
 This application runs ffprobe on a NodeJS server. Enter the URL of a video in the form, and receive the results from FFPROBE.
 
